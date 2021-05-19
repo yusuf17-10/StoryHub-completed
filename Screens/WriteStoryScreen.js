@@ -1,22 +1,14 @@
 import * as React from 'react';
-import{TextInput,View,StyleSheet,TouchableOpacity,KeyboardAvoidingView,ToastAndroid} from 'react-native';
+import{TextInput,View,StyleSheet,TouchableOpacity,KeyboardAvoidingView,ToastAndroid,Text} from 'react-native';
 import {Header} from 'react-native-elements';
 import firebase from 'firebase';
 import db from '../config'
 
 
-submitStory=async()=>{
-   db.collection("stories").add({
-       author:this.state.author,
-       story:this.state.story,
-       title:this.state.title
-   })
-   ToastAndroid.show("Your story has been submitted",ToastAndroid.LONG)
-
-  }
 
 
-export default class WriteStoryScreen extends React.component{
+
+export default class WriteStoryScreen extends React.Component{
     constructor(){
         super();
         this.state={
@@ -25,6 +17,15 @@ export default class WriteStoryScreen extends React.component{
             story:""
         }
     }
+    submitStory=async()=>{
+        db.collection("stories").add({
+            author:this.state.author,
+            story:this.state.story,
+            title:this.state.title
+        })
+        ToastAndroid.show("Your story has been submitted",ToastAndroid.LONG)
+     
+       }
     render(){
         return(
         <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
@@ -59,8 +60,9 @@ export default class WriteStoryScreen extends React.component{
                 onChangeText={(text)=>{
                     this.setState({story:text})
                 }}
+                multiline
                 value={this.state.story}
-                style={styles.textinput}
+                style={[styles.textinput,{height:"40%"}]}
                 placeholder="writeStory"
                 />
 
@@ -86,21 +88,26 @@ export default class WriteStoryScreen extends React.component{
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
+     
       backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
+      
     },
 
     button :{
         backgroundColor:'pink',
         alignItems:'center',
-        alignSelf:'center'
+        alignSelf:'center',
+        padding:10,
+        margin:10,
     },
 
     textinput :{
         borderWidth:0.5,
-        padding:10
+        padding:10,
+        margin:10,
+        alignSelf:"center",
+        width:"80%",
+        textAlign:"center"
     }
 
     

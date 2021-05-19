@@ -2,8 +2,8 @@ import * as React from 'react';
 import {Image} from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
-import WriteStoryScreen from './screens/WriteStoryScreen';
-import ReadStoryScreen from './screens/ReadStoryScreen';
+import WriteStoryScreen from './Screens/WriteStoryScreen';
+import ReadStoryScreen from './Screens/ReadStoryScreen';
 
 export default class App extends React.Component {
   render(){
@@ -31,7 +31,7 @@ var AppNavigator = createBottomTabNavigator({
             
           
         )
-      }else if(routeName = "ReadStoryScreen"){
+      }else if(routeName === "ReadStoryScreen"){
         return(
           <Image
           source = {require("./assets/read.png")}
